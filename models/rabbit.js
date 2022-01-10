@@ -3,7 +3,7 @@ var channel, connection;
 
 const connect = async () => {
   try {
-    connection = await amqp.connect("amqp://rabbitmq:5672");
+    connection = await amqp.connect("amqp://admission_rabbitmq:5672");
     channel = await connection.createChannel();
     await channel.assertQueue("session");
     console.log('Rabbit is connected')
