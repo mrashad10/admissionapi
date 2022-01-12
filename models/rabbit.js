@@ -1,12 +1,12 @@
-const amqp = require('amqplib')
-let channel, connection
+const mqtt = require('mqtt')
+let client
 
 const connect = async () => {
   try {
-    connection = await amqp.connect('amqp://admission_rabbitmq:5672')
-    channel = await connection.createChannel()
-    await channel.assertQueue('session')
-    console.log('Rabbit is connected')
+    client = mqtt.connect("mqtt://admission_rabbitmq:1883");
+    client.on('connect', () => {
+      console.log('Rabbit is connected')
+    })
   } catch (error) {
     // console.error(error);
     console.log('Rabbit is down')
@@ -16,7 +16,7 @@ const connect = async () => {
 
 const sendMessage = async (data) => {
   try {
-    await channel.sendToQueue('session', Buffer.from(JSON.stringify(data)))
+    client.publish('session', JSON.stringify(data))
     console.log('New message sent to RabbitMQ', data)
   } catch (error) {
     console.log(error)

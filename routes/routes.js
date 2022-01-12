@@ -26,7 +26,7 @@ router.post(
       key: crypto.randomBytes(128).toString('hex')
     }
     sendMessage(message)
-    res.status(201);
+    res.status(201)
     res.send(message)
   }
 )
