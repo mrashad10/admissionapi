@@ -23,7 +23,7 @@ router.post(
 
     const message = {
       username: req.body.username,
-      key: crypto.randomBytes(128).toString('hex')
+      key: crypto.randomBytes(16).toString('hex')
     }
     sendMessage(message)
     res.status(201)
