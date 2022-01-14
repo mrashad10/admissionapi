@@ -3,7 +3,7 @@ let client
 
 const connect = async () => {
   try {
-    client = mqtt.connect("mqtt://admission_rabbitmq:1883");
+    client = mqtt.connect('mqtt://admission_rabbitmq:1883')
     client.on('connect', () => {
       console.log('Rabbit is connected')
     })
