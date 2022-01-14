@@ -1,6 +1,6 @@
 const mqtt = require("mqtt");
 const express = require("express");
-const client = mqtt.connect("mqtt://127.0.0.1:1883");
+const client = mqtt.connect('mqtt://admission_rabbitmq:1883');
 const { body, validationResult } = require("express-validator");
 const crypto = require("crypto");
 
