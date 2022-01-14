@@ -6,13 +6,13 @@ const crypto = require('crypto')
 
 router.post(
   '/',
-  body('username').isAlpha().withMessage('must be alphabetic only'),
+  body('username').isAlpha().withMessage('Username must be alphabetic only'),
   body('username')
     .isLength({
       min: 1,
       max: 64
     })
-    .withMessage('must be between 1 and 64 chars long'),
+    .withMessage('Username must be between 1 and 64 chars long'),
   (req, res) => {
     const errors = validationResult(req)
 
