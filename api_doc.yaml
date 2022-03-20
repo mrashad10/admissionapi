@@ -1,0 +1,65 @@
+openapi: 3.0.0
+info:
+  description: This is the API for DevOps admission test
+  version: 1.0.0-oas3
+  title: ADMISSION TEST API
+  contact:
+    email: mrashad@mrashad.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+tags:
+  - name: public
+    description: Operations available to public access
+paths:
+  /:
+    post:
+      tags:
+        - public
+      summary: adds an username to the database
+      operationId: addUsername
+      description: >-
+        Adds an username to the database with cryptographically-secure key and
+        time stamped
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/postInput'
+        description: Username for insert
+      responses:
+        '201':
+          description: Usernaem accepted
+          produces:
+            - application/json
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/postResponse'
+        '400':
+          description: >-
+            Bad request. Username must be alphabetic-only `username' string
+            property the ranges between 1 and 64 characters in length.
+servers:
+  - url: https://virtserver.swaggerhub.com/mrashad/ADMISSION/1.0.0
+  - url: http://virtserver.swaggerhub.com/mrashad/ADMISSION/1.0.0
+components:
+  schemas:
+    postInput:
+      required:
+        - name
+      properties:
+        username:
+          type: string
+          example: ABC
+    postResponse:
+      required:
+        - name
+      properties:
+        username:
+          type: string
+          example: ABC
+        key:
+          type: string
+          example: >-
+            f58dc7f7fefe13f300fdb2c4352ce137fea89e2f1feb9ed986a42922a7c1abf52b7876c460ac8df62523b0225ede88359d5b56e87c50cd53fac9935f70d61d2ebfff0e368f71bd4af4280f673b513e527844c85582ff17a0518ea23f90d54fc5891bf2932da1209a4575c5a8da764948ed0cd6e2cdc54d3cbb1d7bb97cddda7a
